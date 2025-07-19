@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "export": "next build && next export",
+    "export": "next build",
     "translate": "ts-node scripts/translate-content.ts",
     "translate:posts": "ts-node scripts/translate-content.ts --content posts",
     "translate:products": "ts-node scripts/translate-content.ts --content products",
