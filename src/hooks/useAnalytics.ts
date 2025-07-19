@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { trackPageView, trackEvent, trackScrollDepth, trackTimeSpent } from '@/lib/analytics';
+import { trackPageView, trackEvent, trackScrollDepth, trackTimeSpent, GAEventParams } from '@/lib/analytics';
 
 /**
  * Hook for tracking page views and time spent
@@ -61,7 +61,7 @@ export function usePageTracking(pageId: string): void {
  * @returns Function to track click events
  */
 export function useClickTracking() {
-  const trackClick = (elementId: string, metadata?: Record<string, any>) => {
+  const trackClick = (elementId: string, metadata?: Record<string, string | number | boolean | null | undefined>) => {
     trackEvent('click', {
       element_id: elementId,
       ...metadata

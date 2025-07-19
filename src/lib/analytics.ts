@@ -21,52 +21,6 @@ export interface GAEventParams {
 }
 
 /**
- * Initialize Google Analytics
- * This should be called once in the root layout
- */
-export const initGA = () => {
-  if (typeof window === 'undefined') return;
-  
-  // Skip in development unless explicitly enabled
-  if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_ENABLE_GA_IN_DEV !== 'true') {
-    console.log('Google Analytics disabled in development');
-    return;
-  }
-  
-  // Check if GA is already initialized
-  if (typeof window.gtag === 'function') return;
-  
-  // Get GA measurement ID
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-  
-  if (!gaMeasurementId) {
-    console.warn('Google Analytics Measurement ID not found');
-    return;
-  }
-  
-  // Add the GA script to the page
-  const script = document.createElement('script');
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
-  script.async = true;
-  document.head.appendChild(script);
-  
-  // Initialize gtag
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer.push(arguments);
-  };
-  
-  // Initialize GA with the measurement ID
-  window.gtag('js', new Date());
-  window.gtag('config', gaMeasurementId, {
-    send_page_view: false, // We'll handle page views manually
-    anonymize_ip: true, // Anonymize IP for GDPR compliance
-  });
-  
-  console.log('Google Analytics initialized');
-};
-
-/**
  * Track a page view in Google Analytics
  * @param url The URL of the page
  * @param title The title of the page
@@ -162,9 +116,11 @@ export const setAnalyticsOptOut = (optOut: boolean): void => {
 };
 
 // Add TypeScript types for gtag
+type GtagArg = string | Record<string, unknown> | undefined;
+
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: GtagArg[];
+    gtag: (...args: GtagArg[]) => void;
   }
 }

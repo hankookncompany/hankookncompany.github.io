@@ -9,11 +9,11 @@ import { Badge } from '@/components/ui/badge';
 import { Users, Code, Mail, ExternalLink } from 'lucide-react';
 
 interface AboutPageProps {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }
 
 export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about' });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   // Enable static rendering
   setRequestLocale(locale);

@@ -6,11 +6,11 @@ import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 
 interface AuthorsPageProps {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }
 
 export async function generateMetadata({ params }: AuthorsPageProps): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'authors' });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
   

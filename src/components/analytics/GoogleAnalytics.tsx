@@ -2,14 +2,13 @@
 
 import { useEffect } from 'react';
 import Script from 'next/script';
-import { initGA } from '@/lib/analytics';
 
 /**
  * Google Analytics component for Next.js
  * This component should be added to the root layout
  */
 export function GoogleAnalytics() {
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-3NLJDX7T17";
   
   // Skip in development unless explicitly enabled
   if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_ENABLE_GA_IN_DEV !== 'true') {
@@ -21,11 +20,6 @@ export function GoogleAnalytics() {
     console.warn('Google Analytics Measurement ID not found');
     return null;
   }
-  
-  // Initialize GA when the component mounts
-  useEffect(() => {
-    initGA();
-  }, []);
   
   return (
     <>
@@ -44,8 +38,10 @@ export function GoogleAnalytics() {
             gtag('js', new Date());
             gtag('config', '${gaMeasurementId}', {
               page_path: window.location.pathname,
-              anonymize_ip: true
+              anonymize_ip: true,
+              send_page_view: false // We'll handle page views manually
             });
+            console.log('Google Analytics initialized');
           `,
         }}
       />
