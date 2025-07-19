@@ -1,0 +1,52 @@
+name: Translate Content
+
+on:
+  # 수동으로 워크플로우 실행 가능
+  workflow_dispatch:
+  
+  # content 디렉토리의 한국어 파일이 변경될 때 자동 실행
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/content/posts/**.ko.mdx'
+      - 'src/content/authors/**.ko.json'
+      - 'src/content/products/**.ko.json'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run translation script for posts
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npx ts-node scripts/translate-content.ts --content posts
+      
+      - name: Run translation script for authors
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npx ts-node scripts/translate-content.ts --content authors
+      
+      - name: Run translation script for products
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npx ts-node scripts/translate-content.ts --content products
+      
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update translations [skip ci]"
+          file_pattern: "src/content/**/*.en.*"

@@ -101,6 +101,18 @@ A modern tech blog platform designed for our development team to share knowledge
 
 ### Requirement 9
 
+**User Story:** As a blog visitor, I want to learn about the team members who write the content, so that I can understand their expertise and find more content from authors I'm interested in.
+
+#### Acceptance Criteria
+
+1. WHEN viewing a blog post THEN the system SHALL display the author's name, avatar, and brief bio
+2. WHEN clicking on an author's name THEN the system SHALL navigate to their profile page
+3. WHEN viewing an author profile THEN the system SHALL show their personal information, skills, and background
+4. WHEN on an author profile THEN the system SHALL list all blog posts written by that author
+5. WHEN on an author profile THEN the system SHALL show products/projects the author has participated in
+
+### Requirement 10
+
 **User Story:** As a team member, I want the blog to be deployed and accessible via GitHub Pages, so that we can leverage free hosting and simple deployment workflows.
 
 #### Acceptance Criteria

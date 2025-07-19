@@ -1,0 +1,26 @@
+{
+  "id": "task-manager",
+  "slug": "task-manager",
+  "name": "Team Task Manager",
+  "description": "A collaborative task management tool built with React and Node.js. Features real-time synchronization, team collaboration, and project tracking capabilities.",
+  "features": [
+    "Real-time task synchronization",
+    "Team collaboration features",
+    "Project progress tracking",
+    "Kanban board interface",
+    "Notification system",
+    "File attachment support",
+    "Time tracking"
+  ],
+  "technologies": ["React", "Node.js", "Express", "MongoDB", "Socket.io", "Material-UI"],
+  "screenshots": [
+    "/images/products/task-manager/dashboard.jpg",
+    "/images/products/task-manager/kanban.jpg",
+    "/images/products/task-manager/project-view.jpg"
+  ],
+  "demoUrl": "https://task-manager-demo.vercel.app",
+  "githubUrl": "https://github.com/team/task-manager",
+  "status": "active",
+  "createdAt": "2023-08-15T00:00:00Z",
+  "relatedPosts": ["react-hooks-guide"]
+}

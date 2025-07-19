@@ -1,0 +1,127 @@
+{
+  "common": {
+    "home": "Home",
+    "blog": "Blog",
+    "showcase": "Showcase",
+    "authors": "Authors",
+    "about": "About",
+    "language": "Language",
+    "korean": "한국어",
+    "english": "English",
+    "readMore": "Read More",
+    "backToHome": "Back to Home",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "pageNotFoundMessage": "The page you are looking for does not exist or has been moved."
+  },
+  "home": {
+    "title": "Team Tech Blog",
+    "subtitle": "A space for our development team's knowledge sharing, learning records, and technical insights.",
+    "blogSection": {
+      "title": "Blog Posts",
+      "description": "Check out technical blog posts written by our team members.",
+      "comingSoon": "Blog posts will be added soon."
+    },
+    "showcaseSection": {
+      "title": "Project Showcase",
+      "description": "Explore projects developed by our team.",
+      "comingSoon": "Project showcase will be added soon."
+    },
+    "techStack": "Tech Stack"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Sharing our development team's technical insights and experiences.",
+    "allPosts": "All Posts",
+    "recentPosts": "Recent Posts",
+    "readingTime": "{minutes} min read",
+    "publishedOn": "Published on",
+    "author": "Author",
+    "tagsLabel": "Tags",
+    "relatedPosts": "Related Posts",
+    "noPostsFound": "No posts found",
+    "emptyState": "No posts have been published yet. Stay tuned for new content!",
+    "search": {
+      "placeholder": "Search by title or content...",
+      "clear": "Clear search",
+      "results": "Search results for \"{query}\"",
+      "resultsCount": "Found {count} results for \"{query}\".",
+      "noResults": "No results found for \"{query}\". Try a different search term."
+    },
+    "tags": {
+      "filterBy": "Filter by Tags",
+      "selectedTag": "Filtered by tag:",
+      "removeFilter": "Remove tag filter",
+      "all": "All",
+      "taggedWith": "Posts tagged with \"{tag}\".",
+      "taggedCount": "{count} posts tagged with \"{tag}\".",
+      "noTaggedPosts": "No posts found with the tag \"{tag}\". Try selecting a different tag."
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageInfo": "Showing page {current} of {totalPages} ({total} posts total)",
+      "pageInfoSimple": "Page {current} of {totalPages}"
+    },
+    "share": "Share",
+    "backToBlog": "Back to Blog",
+    "viewMorePosts": "View More Posts",
+    "aboutAuthor": "About the Author",
+    "readMore": "Read more"
+  },
+  "showcase": {
+    "title": "Project Showcase",
+    "allProjects": "All Projects",
+    "technologies": "Technologies",
+    "features": "Key Features",
+    "demo": "View Demo",
+    "github": "GitHub",
+    "relatedPosts": "Related Blog Posts",
+    "status": {
+      "active": "Active",
+      "archived": "Archived"
+    }
+  },
+  "authors": {
+    "title": "Team Members",
+    "allAuthors": "All Team Members",
+    "role": "Role",
+    "skills": "Skills",
+    "joinedAt": "Joined",
+    "posts": "Posts Written",
+    "projects": "Projects Participated",
+    "social": "Social Links",
+    "noContent": "No posts or projects found for this author yet."
+  },
+  "footer": {
+    "copyright": "© 2024 Team Tech Blog. All rights reserved.",
+    "builtWith": "Built with Next.js and ❤️"
+  },
+  "about": {
+    "title": "About Our Team",
+    "subtitle": "Learn more about our development team and tech blog",
+    "teamOverview": {
+      "title": "Team Overview",
+      "description": "We are a team developing innovative solutions using the latest web technologies. This blog is a space to share our technical experiences and knowledge.",
+      "meetTeam": "Meet Our Team",
+      "teamDescription": "Our team consists of developers with diverse backgrounds and expertise. Check out each team member's profile to see their posts and projects.",
+      "viewMembers": "View Team Members"
+    },
+    "techStack": {
+      "title": "Our Tech Stack",
+      "description": "We primarily use the following technologies to develop web applications:",
+      "principles": "Development Principles",
+      "principle1": "User-centered design and accessibility first",
+      "principle2": "Performance optimization and code quality maintenance",
+      "principle3": "Continuous learning and knowledge sharing",
+      "principle4": "Test-driven development and automation"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "If you have any questions or collaboration proposals, feel free to contact us. We are always open to new ideas and projects.",
+      "email": "Email",
+      "socialMedia": "Social Media"
+    }
+  }
+}

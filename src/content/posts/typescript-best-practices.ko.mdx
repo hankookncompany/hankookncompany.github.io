@@ -1,0 +1,129 @@
+---
+title: "TypeScript 베스트 프랙티스"
+excerpt: "TypeScript를 효과적으로 사용하기 위한 실무 중심의 베스트 프랙티스를 소개합니다."
+author: "john-doe"
+publishedAt: "2024-01-25T14:15:00Z"
+updatedAt: "2024-01-25T14:15:00Z"
+tags: ["TypeScript", "JavaScript", "개발방법론", "타입안전성"]
+status: "published"
+featuredImage: "/images/typescript-best-practices.jpg"
+---
+
+# TypeScript 베스트 프랙티스
+
+TypeScript는 JavaScript에 정적 타입을 추가하여 더 안전하고 유지보수하기 쉬운 코드를 작성할 수 있게 해줍니다.
+
+## 타입 정의 베스트 프랙티스
+
+### 인터페이스 vs 타입 별칭
+
+```typescript
+// 인터페이스 사용 (확장 가능)
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface AdminUser extends User {
+  permissions: string[];
+}
+
+// 타입 별칭 사용 (유니온, 교차 타입)
+type Status = 'loading' | 'success' | 'error';
+type ApiResponse<T> = {
+  data: T;
+  status: Status;
+  message?: string;
+};
+```
+
+### 제네릭 활용
+
+```typescript
+// 재사용 가능한 제네릭 함수
+function createApiClient<T>() {
+  return {
+    get: (url: string): Promise<T> => fetch(url).then(res => res.json()),
+    post: (url: string, data: T): Promise<T> => 
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+  };
+}
+
+const userApi = createApiClient<User>();
+const productApi = createApiClient<Product>();
+```
+
+## 유틸리티 타입 활용
+
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+}
+
+// 필요한 필드만 선택
+type PublicUser = Pick<User, 'id' | 'name' | 'email'>;
+
+// 특정 필드 제외
+type UserWithoutPassword = Omit<User, 'password'>;
+
+// 모든 필드를 선택적으로
+type PartialUser = Partial<User>;
+
+// 생성 시 필요한 필드만
+type CreateUserRequest = Omit<User, 'id' | 'createdAt'>;
+```
+
+## 타입 가드 활용
+
+```typescript
+// 타입 가드 함수
+function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+function isUser(obj: unknown): obj is User {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'id' in obj &&
+    'name' in obj &&
+    'email' in obj
+  );
+}
+
+// 사용 예시
+function processUserData(data: unknown) {
+  if (isUser(data)) {
+    // 이제 data는 User 타입으로 추론됩니다
+    console.log(data.name);
+  }
+}
+```
+
+## 엄격한 설정 사용
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true
+  }
+}
+```
+
+## 결론
+
+TypeScript의 강력한 타입 시스템을 제대로 활용하면 런타임 에러를 크게 줄이고 개발 생산성을 높일 수 있습니다. 점진적으로 도입하여 팀의 개발 경험을 향상시켜보세요.

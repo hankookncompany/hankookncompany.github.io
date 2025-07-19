@@ -1,0 +1,26 @@
+{
+  "id": "task-manager",
+  "slug": "task-manager",
+  "name": "팀 태스크 매니저",
+  "description": "React와 Node.js로 구축된 협업 태스크 관리 도구입니다. 실시간 동기화, 팀 협업, 프로젝트 추적 기능을 제공합니다.",
+  "features": [
+    "실시간 태스크 동기화",
+    "팀 협업 기능",
+    "프로젝트 진행률 추적",
+    "칸반 보드 인터페이스",
+    "알림 시스템",
+    "파일 첨부 기능",
+    "시간 추적"
+  ],
+  "technologies": ["React", "Node.js", "Express", "MongoDB", "Socket.io", "Material-UI"],
+  "screenshots": [
+    "/images/products/task-manager/dashboard.jpg",
+    "/images/products/task-manager/kanban.jpg",
+    "/images/products/task-manager/project-view.jpg"
+  ],
+  "demoUrl": "https://task-manager-demo.vercel.app",
+  "githubUrl": "https://github.com/team/task-manager",
+  "status": "active",
+  "createdAt": "2023-08-15T00:00:00Z",
+  "relatedPosts": ["react-hooks-guide"]
+}

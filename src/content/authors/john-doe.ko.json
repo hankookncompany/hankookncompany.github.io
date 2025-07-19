@@ -1,0 +1,17 @@
+{
+  "id": "john-doe",
+  "slug": "john-doe",
+  "name": "김개발",
+  "avatar": null,
+  "bio": "풀스택 개발자로 Next.js, React, Node.js를 주로 다룹니다. 새로운 기술을 배우고 공유하는 것을 좋아합니다.",
+  "role": "시니어 풀스택 개발자",
+  "skills": ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL"],
+  "social": {
+    "github": "https://github.com/johndoe",
+    "linkedin": "https://linkedin.com/in/johndoe",
+    "email": "john@example.com"
+  },
+  "joinedAt": "2023-01-15T00:00:00Z",
+  "isActive": true,
+  "projects": ["blog-platform", "e-commerce-app"]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "blog-platform",
+  "slug": "blog-platform",
+  "name": "Team Tech Blog Platform",
+  "description": "A modern tech blog platform built with Next.js and MDX. Features multilingual support, automatic translation, and analytics capabilities.",
+  "features": [
+    "MDX-based content management",
+    "Korean/English multilingual support",
+    "Automatic translation system",
+    "Real-time analytics dashboard",
+    "Responsive design",
+    "SEO optimization",
+    "GitHub Pages deployment"
+  ],
+  "technologies": ["Next.js", "React", "TypeScript", "MDX", "Tailwind CSS", "Supabase"],
+  "screenshots": [
+    "/images/products/blog-platform/homepage.jpg",
+    "/images/products/blog-platform/post-detail.jpg",
+    "/images/products/blog-platform/admin-dashboard.jpg"
+  ],
+  "demoUrl": "https://team-blog.github.io",
+  "githubUrl": "https://github.com/team/blog-platform",
+  "status": "active",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "relatedPosts": ["sample-post"]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "blog-platform",
+  "slug": "blog-platform",
+  "name": "팀 기술 블로그 플랫폼",
+  "description": "Next.js와 MDX를 활용한 현대적인 기술 블로그 플랫폼입니다. 다국어 지원, 자동 번역, 분석 기능을 포함합니다.",
+  "features": [
+    "MDX 기반 콘텐츠 관리",
+    "한국어/영어 다국어 지원",
+    "자동 번역 시스템",
+    "실시간 분석 대시보드",
+    "반응형 디자인",
+    "SEO 최적화",
+    "GitHub Pages 배포"
+  ],
+  "technologies": ["Next.js", "React", "TypeScript", "MDX", "Tailwind CSS", "Supabase"],
+  "screenshots": [
+    "/images/products/blog-platform/homepage.jpg",
+    "/images/products/blog-platform/post-detail.jpg",
+    "/images/products/blog-platform/admin-dashboard.jpg"
+  ],
+  "demoUrl": "https://team-blog.github.io",
+  "githubUrl": "https://github.com/team/blog-platform",
+  "status": "active",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "relatedPosts": ["sample-post"]
+}
