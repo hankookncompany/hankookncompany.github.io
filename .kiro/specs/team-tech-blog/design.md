@@ -222,15 +222,15 @@ interface BlogPost {
   slug: string;
   title: {
     ko: string;
-    en?: string; // Auto-translated
+    en?: string; // Manually created
   };
   content: {
     ko: string;
-    en?: string; // Auto-translated
+    en?: string; // Manually created
   };
   excerpt: {
     ko: string;
-    en?: string;
+    en?: string; // Manually created
   };
   authorId: string; // Reference to Author
   publishedAt: Date;
@@ -250,15 +250,15 @@ interface Product {
   slug: string;
   name: {
     ko: string;
-    en?: string;
+    en?: string; // Manually created
   };
   description: {
     ko: string;
-    en?: string;
+    en?: string; // Manually created
   };
   features: {
     ko: string[];
-    en?: string[];
+    en?: string[]; // Manually created
   };
   technologies: string[];
   screenshots: string[];
@@ -302,20 +302,20 @@ interface GAEvent {
 ```
 content/
 ├── posts/
-│   ├── 2024-01-15-nextjs-optimization.ko.mdx  # Original Korean
-│   ├── 2024-01-15-nextjs-optimization.en.mdx  # Auto-generated English
+│   ├── 2024-01-15-nextjs-optimization.ko.mdx  # Korean version
+│   ├── 2024-01-15-nextjs-optimization.en.mdx  # English version (manually created)
 │   ├── 2024-01-20-react-patterns.ko.mdx
 │   ├── 2024-01-20-react-patterns.en.mdx
 │   └── ...
 ├── products/
 │   ├── project-alpha.ko.json
-│   ├── project-alpha.en.json  # Auto-generated
+│   ├── project-alpha.en.json  # Manually created English version
 │   ├── project-beta.ko.json
 │   ├── project-beta.en.json
 │   └── ...
 ├── authors/
-│   ├── john-doe.ko.json        # Team member profile
-│   ├── john-doe.en.json        # Auto-generated English
+│   ├── john-doe.ko.json        # Team member profile in Korean
+│   ├── john-doe.en.json        # Team member profile in English (manually created)
 │   ├── jane-smith.ko.json
 │   ├── jane-smith.en.json
 │   └── ...
@@ -329,24 +329,15 @@ content/
 
 ### Translation Strategy
 1. **Primary Language**: Korean (authored content)
-2. **Build-time Translation**: Automated translation during build/deploy phase
-3. **Static File Generation**: Translated MDX files generated and stored
+2. **Manual Translation**: Developers create both Korean and English versions
+3. **Static File Generation**: Both language versions stored as separate files
 4. **i18n Integration**: Proper locale-based file routing
 
 ### Implementation Approach
 ```typescript
-// scripts/translate-content.ts - Build-time translation script
-interface TranslationBuildConfig {
-  sourceLocale: 'ko';
-  targetLocales: ['en'];
-  contentDir: 'content/posts';
-  outputDir: 'content/posts';
-  translationService: 'google' | 'papago';
-}
-
-// Build process generates:
-// content/posts/my-post.ko.mdx (original)
-// content/posts/my-post.en.mdx (auto-generated)
+// Content files are manually created for both languages:
+// content/posts/my-post.ko.mdx (Korean version)
+// content/posts/my-post.en.mdx (English version)
 
 // lib/i18n.ts - Next.js i18n configuration
 const i18nConfig = {
@@ -461,10 +452,10 @@ export const useTimeSpentTracking = (pageId: string) => {
 
 ## Error Handling
 
-### Translation Errors
-- Graceful fallback to original Korean content
-- Error logging for failed translations
-- Retry mechanisms for temporary failures
+### Language Fallbacks
+- Graceful fallback to available language version
+- Clear indication when content is only available in one language
+- Consistent user experience across both languages
 
 ### Analytics Errors
 - Graceful handling of analytics blocking (ad blockers)

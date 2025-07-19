@@ -82,10 +82,10 @@ A modern tech blog platform designed for our development team to share knowledge
 #### Acceptance Criteria
 
 1. WHEN a visitor accesses the blog THEN the system SHALL detect browser language preferences
-2. WHEN Korean content is published THEN the system SHALL automatically generate English translations
+2. WHEN content is created THEN the system SHALL support both Korean and English versions created by developers
 3. WHEN a visitor selects a language THEN the system SHALL display all content in that language
-4. WHEN viewing translated content THEN the system SHALL indicate it's a translation
-5. IF translation fails THEN the system SHALL fall back to the original Korean content
+4. WHEN content is not available in the selected language THEN the system SHALL indicate content is only available in the original language
+5. IF content is missing in the selected language THEN the system SHALL fall back to the available language version
 
 ### Requirement 8
 

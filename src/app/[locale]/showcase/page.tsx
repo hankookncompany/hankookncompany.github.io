@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getProducts } from '@/lib/content';
 import { ProductCard } from '@/components/showcase/ProductCard';
-import type { Locale } from '@/types';
+import type { Locale } from '@/i18n';
 
 interface ShowcasePageProps {
   params: Promise<{

@@ -64,11 +64,11 @@
   - Implement time-spent tracking with proper session management
   - _Requirements: 6.1, 6.2, 6.3, 6.4_
 
-- [x] 10. Build automated translation system
-  - Create build-time translation script for Korean to English conversion
-  - Set up translation service integration (Google Translate or Papago)
-  - Implement content file processing to generate .en.mdx files
-  - Add translation status indicators and fallback mechanisms
+- [x] 10. Implement multi-language content support
+  - Set up content structure for manually created Korean and English versions
+  - Create language fallback mechanisms for missing content
+  - Implement language availability indicators
+  - Add documentation for content creation in both languages
   - _Requirements: 7.2, 7.4, 7.5_
 
 - [ ] 11. Implement SEO optimization and Open Graph tags
@@ -101,7 +101,7 @@
 
 - [ ] 14. Set up GitHub Actions for automated deployment
   - Create GitHub Actions workflow for building and deploying to GitHub Pages
-  - Configure automated translation processing in CI/CD pipeline
+  - Ensure both language versions are properly deployed
   - Set up OG image generation during build process
   - Add build optimization and asset compression steps
   - _Requirements: 9.2, 9.3, 9.5_
