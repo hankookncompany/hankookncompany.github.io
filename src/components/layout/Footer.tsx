@@ -41,9 +41,9 @@ export function Footer({ locale }: FooterProps) {
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brand Section */}
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2 lg:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                   <Code2 className="h-5 w-5" />
@@ -105,7 +105,7 @@ export function Footer({ locale }: FooterProps) {
           {/* Bottom Section */}
           <div className="mt-8 pt-8 border-t">
             <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground text-center sm:text-left">
                 © {currentYear} {locale === 'ko' ? '팀 기술 블로그' : 'Team Tech Blog'}. {locale === 'ko' ? '모든 권리 보유.' : 'All rights reserved.'}
               </p>
               <div className="flex items-center space-x-1 text-sm text-muted-foreground">

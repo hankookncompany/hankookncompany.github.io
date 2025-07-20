@@ -60,7 +60,7 @@ export function BlogList({
   return (
     <div className="space-y-8">
       {/* Posts Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-1">
         {posts.map((post) => (
           <BlogPost
             key={`${post.slug}-${post.locale}`}
@@ -74,7 +74,7 @@ export function BlogList({
 
       {/* Pagination */}
       {showPagination && totalPages > 1 && (
-        <div className="flex justify-center items-center gap-4 mt-12">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12">
           <Button
             variant="outline"
             size="sm"
@@ -87,7 +87,7 @@ export function BlogList({
             </Link>
           </Button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
               const isCurrentPage = page === currentPage;
               const shouldShow = 

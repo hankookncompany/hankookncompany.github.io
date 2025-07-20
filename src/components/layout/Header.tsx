@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Menu, X, Code2, Settings } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -86,8 +87,9 @@ export function Header({ locale }: HeaderProps) {
             ))}
           </nav>
 
-          {/* Right side - Language Switcher and Mobile Menu */}
+          {/* Right side - Theme Toggle, Language Switcher and Mobile Menu */}
           <div className="flex items-center space-x-2">
+            <ThemeToggle />
             <LanguageSwitcher />
             
             {/* Mobile menu button */}
@@ -110,7 +112,7 @@ export function Header({ locale }: HeaderProps) {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 border-t">
+            <div className="px-2 pt-2 pb-3 space-y-1 border-t bg-background/95 backdrop-blur">
               {navigation.map((item) => (
                 <Link 
                   key={item.href} 
@@ -131,6 +133,17 @@ export function Header({ locale }: HeaderProps) {
                   </Button>
                 </Link>
               ))}
+              
+              {/* Mobile Theme and Language Controls */}
+              <div className="flex items-center justify-between pt-2 mt-2 border-t">
+                <span className="text-sm text-muted-foreground">
+                  {locale === 'ko' ? '설정' : 'Settings'}
+                </span>
+                <div className="flex items-center space-x-2">
+                  <ThemeToggle />
+                  <LanguageSwitcher />
+                </div>
+              </div>
             </div>
           </div>
         )}

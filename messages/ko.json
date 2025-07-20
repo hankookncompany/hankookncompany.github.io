@@ -124,6 +124,12 @@
       "socialMedia": "소셜 미디어"
     }
   },
+  "theme": {
+    "toggle": "테마 변경",
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템"
+  },
   "admin": {
     "title": "관리자",
     "dashboard": "대시보드",

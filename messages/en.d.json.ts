@@ -127,6 +127,12 @@ declare const messages: {
       "socialMedia": "Social Media"
     }
   },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
   "admin": {
     "title": "Admin",
     "dashboard": "Dashboard",

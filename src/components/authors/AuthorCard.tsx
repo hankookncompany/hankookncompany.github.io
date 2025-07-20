@@ -30,7 +30,7 @@ export function AuthorCard({ author, locale, showBio = true, compact = false }: 
   return (
     <Card className={`w-full ${compact ? 'border-0 shadow-none' : ''}`}>
       <CardHeader className={compact ? 'px-0 pt-0' : ''}>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
             {author.avatar && typeof author.avatar === 'string' ? (
               <img 
@@ -50,7 +50,7 @@ export function AuthorCard({ author, locale, showBio = true, compact = false }: 
             )}
           </div>
           
-          <div>
+          <div className="text-center sm:text-left">
             <h3 className="text-lg font-semibold">
               <Link 
                 href={`/${locale}/authors/${author.slug}`}
@@ -83,7 +83,7 @@ export function AuthorCard({ author, locale, showBio = true, compact = false }: 
             <>
               <div className="mb-4">
                 <h4 className="text-sm font-medium mb-2">{t('skills')}</h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                   {author.skills.map((skill) => (
                     <Badge key={skill} variant="secondary">
                       {skill}
@@ -92,7 +92,7 @@ export function AuthorCard({ author, locale, showBio = true, compact = false }: 
                 </div>
               </div>
               
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 justify-center sm:justify-start">
                 {author.social.github && (
                   <Button variant="outline" size="sm" asChild>
                     <a href={author.social.github} target="_blank" rel="noopener noreferrer">

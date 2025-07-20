@@ -109,7 +109,7 @@ export function BlogPost({ post, author, locale, showFullContent = false }: Blog
           )}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
           {author && (
             <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
@@ -137,7 +137,7 @@ export function BlogPost({ post, author, locale, showFullContent = false }: Blog
               variant="ghost"
               size="sm"
               onClick={handleShare}
-              className="ml-auto"
+              className="sm:ml-auto mt-2 sm:mt-0"
             >
               <Share2 className="w-4 h-4 mr-2" />
               {t('share')}
