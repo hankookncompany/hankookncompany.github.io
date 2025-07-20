@@ -1,0 +1,17 @@
+{
+  "id": "Eugene",
+  "slug": "yoonjin-hwang",
+  "name": "Yoonjin.Hwang",
+  "avatar": "/images/authors/yoonjin-hwang.png",
+  "bio": "풀스택 개발자로 Next.js, React, Node.js를 주로 다룹니다. 새로운 기술을 배우고 공유하는 것을 좋아합니다.",
+  "role": "Technical Lead",
+  "skills": ["Next.js", "React", "TypeScript", "PostgreSQL", "Databricks"],
+  "social": {
+    "github": "https://github.com/yoonjinhwang",
+    "linkedin": "https://linkedin.com/in/yoonjin.hwang",
+    "email": "yoonjin.hwang@hankookn.com"
+  },
+  "joinedAt": "2023-03-02T00:00:00Z",
+  "isActive": true,
+  "projects": ["blog-platform"]
+}

@@ -22,7 +22,7 @@ const mdxComponents: MDXComponents = {
     </h3>
   ),
   p: ({ children, ...props }) => (
-    <p className="mb-4 leading-relaxed text-muted-foreground" {...props}>
+    <p className="mb-4 leading-relaxed" {...props}>
       {children}
     </p>
   ),

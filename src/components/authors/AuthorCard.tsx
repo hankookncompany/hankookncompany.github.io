@@ -31,7 +31,7 @@ export function AuthorCard({ author, locale, showBio = true, compact = false }: 
     <Card className={`w-full ${compact ? 'border-0 shadow-none' : ''}`}>
       <CardHeader className={compact ? 'px-0 pt-0' : ''}>
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
             {author.avatar && typeof author.avatar === 'string' ? (
               <img 
                 src={author.avatar} 

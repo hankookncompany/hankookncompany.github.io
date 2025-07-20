@@ -75,7 +75,7 @@ export function BlogPost({ post, author, locale, showFullContent = false }: Blog
   };
 
   return (
-    <Card className="w-full">
+    <Card className="w-full pt-0">
       {post.frontmatter.featuredImage && (
         <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
           <Image

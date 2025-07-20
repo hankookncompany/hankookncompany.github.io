@@ -208,7 +208,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Author Bio Section */}
             {author && (
-              <div className="mt-12 p-6 border rounded-lg bg-muted/50">
+              <div className="mt-12">
                 <h3 className="text-lg font-semibold mb-4">
                   {t('aboutAuthor')}
                 </h3>
