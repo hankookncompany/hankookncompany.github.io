@@ -30,7 +30,6 @@ const nextConfig: NextConfig = {
   ...(process.env.NODE_ENV === 'production' 
     ? {
        output: 'export',
-      basePath: '/hankookncompany.github.io'
       } : {}),
 
   // Disable image optimization for static export
