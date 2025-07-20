@@ -27,7 +27,11 @@ const withNextIntl = createNextIntlPlugin({
 
 const nextConfig: NextConfig = {
   // Enable static export for GitHub Pages only in production
-  ...(process.env.NODE_ENV === 'production' ? { output: 'export' } : {}),
+  ...(process.env.NODE_ENV === 'production' 
+    ? {
+       output: 'export',
+      basePath: '/hankookncompany.github.io'
+      } : {}),
 
   // Disable image optimization for static export
   images: {
