@@ -26,7 +26,7 @@ export function Footer({ locale }: FooterProps) {
     social: [
       {
         name: 'GitHub',
-        href: 'https://github.com/your-team', // Update with actual GitHub URL
+        href: 'https://github.com/hankookncompany', // Update with actual GitHub URL
         icon: Github,
       },
       {

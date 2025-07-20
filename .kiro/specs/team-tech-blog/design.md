@@ -449,6 +449,9 @@ export const useTimeSpentTracking = (pageId: string) => {
 - **Respect for Do Not Track** browser settings
 - **Opt-out mechanisms** for users via UI component
 - **Data retention policies** managed by Google Analytics
+- **Cookie consent** with clear privacy policy
+- **User control** over analytics data collection
+- **Data retention policies** managed by Google Analytics
 
 ## Error Handling
 
@@ -540,7 +543,7 @@ export function SEOHead({
   author,
   tags 
 }: SEOProps) {
-  const siteUrl = 'https://your-team.github.io';
+  const siteUrl = 'https://hankookncompany.github.io';
   const fullTitle = `${title} | Team Tech Blog`;
   const ogImageUrl = ogImage || `${siteUrl}/og-default.png`;
   

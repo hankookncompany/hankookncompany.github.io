@@ -17,14 +17,48 @@ export async function generateMetadata({ params }: {
   
   const title = t('title');
   const description = t('subtitle');
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const blogUrl = `${siteUrl}/${locale}/blog`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: blogUrl,
+      languages: {
+        'ko': `${siteUrl}/ko/blog`,
+        'en': `${siteUrl}/en/blog`,
+      },
+    },
     openGraph: {
       title,
       description,
       type: 'website',
+      url: blogUrl,
+      siteName: 'Team Tech Blog',
+      locale: locale === 'ko' ? 'ko_KR' : 'en_US',
+      images: [
+        {
+          url: `${siteUrl}/og-default.png`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${siteUrl}/og-default.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
   };
 }
@@ -45,8 +79,52 @@ export default async function BlogPage({ params }: BlogPageProps) {
     getAllTags(locale),
   ]);
 
+  // Structured data for blog listing
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const blogUrl = `${siteUrl}/${locale}/blog`;
+  
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: t('title'),
+    description: t('subtitle'),
+    url: blogUrl,
+    inLanguage: locale === 'ko' ? 'ko-KR' : 'en-US',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Team Tech Blog',
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/logo.png`,
+      },
+    },
+    blogPost: posts.slice(0, 10).map(post => ({
+      '@type': 'BlogPosting',
+      headline: post.frontmatter.title,
+      description: post.frontmatter.excerpt,
+      url: `${siteUrl}/${locale}/blog/${post.slug}`,
+      datePublished: post.frontmatter.publishedAt,
+      dateModified: post.frontmatter.updatedAt || post.frontmatter.publishedAt,
+      author: {
+        '@type': 'Person',
+        name: authors.find(a => a.slug === post.frontmatter.author)?.name || 'Unknown',
+      },
+      keywords: post.frontmatter.tags.join(', '),
+    })),
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+      
+      <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">
@@ -78,5 +156,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </Suspense>
       </div>
     </div>
+    </>
   );
 }

@@ -69,11 +69,11 @@ A modern tech blog platform designed for our development team to share knowledge
 
 #### Acceptance Criteria
 
-1. WHEN a visitor accesses any page THEN the system SHALL track the referrer information
-2. WHEN a visitor navigates between pages THEN the system SHALL record the user flow
-3. WHEN a visitor stays on a page THEN the system SHALL calculate and record time spent
-4. WHEN analytics data is collected THEN the system SHALL send it to the existing OpenSearch endpoint
-5. IF a visitor blocks tracking THEN the system SHALL respect privacy preferences
+1. WHEN a visitor accesses any page THEN the system SHALL track the referrer information using Google Analytics 4
+2. WHEN a visitor navigates between pages THEN the system SHALL record the user flow through Google Analytics 4
+3. WHEN a visitor stays on a page THEN the system SHALL calculate and record time spent using Google Analytics 4
+4. WHEN analytics data is collected THEN the system SHALL send it to Google Analytics 4 for analysis and reporting
+5. IF a visitor blocks tracking THEN the system SHALL respect privacy preferences and provide opt-out functionality
 
 ### Requirement 7
 

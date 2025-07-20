@@ -15,7 +15,7 @@ interface AboutPageProps {
 export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'about' });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
 
   return {
     title: t('title'),

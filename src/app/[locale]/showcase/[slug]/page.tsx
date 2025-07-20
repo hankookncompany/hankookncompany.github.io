@@ -36,8 +36,54 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const relatedPosts = await getRelatedPostsForProduct(slug, locale);
   const authors = await getAuthors(locale);
 
+  // Structured data for SEO
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const productUrl = `${siteUrl}/${locale}/showcase/${slug}`;
+  
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: product.name,
+    description: product.description,
+    url: productUrl,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Cross-platform',
+    datePublished: product.createdAt,
+    keywords: product.technologies.join(', '),
+    image: product.screenshots.length > 0 
+      ? product.screenshots.map(screenshot => 
+          screenshot.startsWith('http') ? screenshot : `${siteUrl}${screenshot}`
+        )
+      : [`${siteUrl}/og-default.png`],
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Team Tech Blog',
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/logo.png`,
+      },
+    },
+    inLanguage: locale === 'ko' ? 'ko-KR' : 'en-US',
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+      
+      <div className="container mx-auto px-4 py-8">
       {/* Back Navigation */}
       <div className="mb-6">
         <Button asChild variant="ghost" size="sm">
@@ -221,6 +267,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -254,11 +301,71 @@ export async function generateMetadata({ params }: ProductPageProps) {
   if (!product) {
     return {
       title: 'Product Not Found',
+      description: 'The requested product could not be found.',
     };
   }
+  
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const productUrl = `${siteUrl}/${locale}/showcase/${slug}`;
+  
+  // Check if the product exists in other locales
+  const koProduct = await getProduct(slug, 'ko').catch(() => null);
+  const enProduct = await getProduct(slug, 'en').catch(() => null);
+  
+  const alternateLanguages: Record<string, string> = {};
+  if (koProduct) alternateLanguages['ko'] = `${siteUrl}/ko/showcase/${slug}`;
+  if (enProduct) alternateLanguages['en'] = `${siteUrl}/en/showcase/${slug}`;
   
   return {
     title: product.name,
     description: product.description,
+    keywords: product.technologies.join(', '),
+    alternates: {
+      canonical: productUrl,
+      languages: alternateLanguages,
+    },
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      type: 'website',
+      url: productUrl,
+      siteName: 'Team Tech Blog',
+      locale: locale === 'ko' ? 'ko_KR' : 'en_US',
+      images: product.screenshots.length > 0 ? [
+        {
+          url: product.screenshots[0].startsWith('http')
+            ? product.screenshots[0]
+            : `${siteUrl}${product.screenshots[0]}`,
+          width: 1200,
+          height: 630,
+          alt: product.name,
+        }
+      ] : [
+        {
+          url: `${siteUrl}/og-default.png`,
+          width: 1200,
+          height: 630,
+          alt: product.name,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: product.name,
+      description: product.description,
+      images: product.screenshots.length > 0 ? [
+        product.screenshots[0].startsWith('http')
+          ? product.screenshots[0]
+          : `${siteUrl}${product.screenshots[0]}`
+      ] : [`${siteUrl}/og-default.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
   };
 }

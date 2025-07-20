@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run generate:og && NEXT_OUTPUT=export next build && next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "export": "next build",
+    "export": "npm run generate:og && NEXT_OUTPUT=export next build && next-sitemap",
+    "generate:og": "tsx scripts/generate-og-images.ts",
     "translate": "ts-node scripts/translate-content.ts",
     "translate:posts": "ts-node scripts/translate-content.ts --content posts",
     "translate:products": "ts-node scripts/translate-content.ts --content products",
@@ -23,6 +24,7 @@
     "@supabase/supabase-js": "^2.52.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/mdx": "^2.0.13",
+    "@vercel/og": "^0.7.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
@@ -48,8 +50,10 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.2",
+    "next-sitemap": "^4.2.3",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.5",
     "typescript": "^5"
   }

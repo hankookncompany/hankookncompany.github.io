@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
   }
 
   const t = await getTranslations({ locale, namespace: 'authors' });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
   const authorUrl = `${siteUrl}/${locale}/authors/${slug}`;
 
   return {
@@ -109,14 +109,14 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
     name: author.name,
     description: author.bio,
     jobTitle: author.role,
-    image: author.avatar ? (author.avatar.startsWith('http') ? author.avatar : `${process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io'}${author.avatar}`) : `${process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io'}/placeholder-avatar.svg`,
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io'}/${locale}/authors/${slug}`,
+    image: author.avatar ? (author.avatar.startsWith('http') ? author.avatar : `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io'}${author.avatar}`) : `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io'}/placeholder-avatar.svg`,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io'}/${locale}/authors/${slug}`,
     sameAs: Object.values(author.social).filter(Boolean),
     knowsAbout: author.skills,
     worksFor: {
       '@type': 'Organization',
       name: 'Team Tech Blog',
-      url: process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io',
+      url: process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io',
     },
   };
 

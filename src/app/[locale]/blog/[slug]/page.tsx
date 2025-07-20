@@ -43,13 +43,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const title = post.frontmatter.title;
   const description = post.frontmatter.excerpt;
   const author = await getAuthor(post.frontmatter.author, locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
   const postUrl = `${siteUrl}/${locale}/blog/${slug}`;
-  
+
   // Check if the post exists in other locales
   const hasKoVersion = await checkPostExistsInLocale(slug, 'ko');
   const hasEnVersion = await checkPostExistsInLocale(slug, 'en');
-  
+
   const alternateLanguages: Record<string, string> = {};
   if (hasKoVersion) alternateLanguages['ko'] = `${siteUrl}/ko/blog/${slug}`;
   if (hasEnVersion) alternateLanguages['en'] = `${siteUrl}/en/blog/${slug}`;
@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
 
     const author = await getAuthor(post.frontmatter.author, locale);
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
     const postUrl = `${siteUrl}/${locale}/blog/${slug}`;
 
     // Structured data for SEO

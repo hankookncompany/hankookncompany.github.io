@@ -47,7 +47,36 @@ const nextConfig: NextConfig = {
   },
 
   // Configure page extensions to include MDX
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  // In production, exclude server-specific files
+  pageExtensions: process.env.NEXT_OUTPUT === 'export' 
+    ? ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx']
+    : ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx', 'server.ts', 'server.tsx'],
+  // Webpack configuration to exclude admin modules in production
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && isServer) {
+      // In production server build, replace admin modules with empty modules
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@/lib/admin': false,
+        '@/components/admin/AdminDashboard': false,
+        '@/components/admin/AdminPostList': false,
+        '@/components/admin/PostEditor': false,
+        '@/components/admin/AdminLogin': false,
+        '@/contexts/AdminAuthContext': false,
+      };
+    }
+
+    // Exclude fs module for client-side builds
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      };
+    }
+
+    return config;
+  },
 };
 
 export default withNextIntl(withMDX(nextConfig));

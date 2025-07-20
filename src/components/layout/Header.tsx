@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import { Menu, X, Code2 } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X, Code2, Settings } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { type Locale } from '@/i18n';
+import { isAdminEnabled } from '@/lib/dev-utils';
 
 interface HeaderProps {
   locale: Locale;
@@ -19,6 +20,7 @@ export function Header({ locale }: HeaderProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+
   const navigation = [
     { name: t('home'), href: `/${locale}` },
     { name: t('blog'), href: `/${locale}/blog` },
@@ -26,6 +28,11 @@ export function Header({ locale }: HeaderProps) {
     { name: t('authors'), href: `/${locale}/authors` },
     { name: t('about'), href: `/${locale}/about` },
   ];
+
+  // Add admin link in development
+  if (isAdminEnabled) {
+    navigation.push({ name: 'Admin', href: `/${locale}/admin` });
+  }
 
   const isActiveLink = (href: string) => {
     if (href === `/${locale}`) {

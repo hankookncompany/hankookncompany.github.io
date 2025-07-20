@@ -12,7 +12,7 @@ interface AuthorsPageProps {
 export async function generateMetadata({ params }: AuthorsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'authors' });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
   
   return {
     title: t('title'),

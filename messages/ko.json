@@ -123,5 +123,55 @@
       "email": "이메일",
       "socialMedia": "소셜 미디어"
     }
+  },
+  "admin": {
+    "title": "관리자",
+    "dashboard": "대시보드",
+    "dashboardDescription": "블로그 포스트와 콘텐츠를 관리하세요",
+    "loading": "로딩 중...",
+    "posts": {
+      "title": "포스트",
+      "description": "블로그 포스트를 관리하세요",
+      "total": "개 포스트",
+      "empty": "포스트가 없습니다",
+      "create": "포스트 작성",
+      "createFirst": "첫 번째 포스트 작성하기",
+      "edit": "포스트 편집",
+      "editDescription": "블로그 포스트를 편집하세요",
+      "createDescription": "새로운 블로그 포스트를 작성하세요",
+      "back": "뒤로",
+      "author": "작성자",
+      "publishedAt": "게시일",
+      "readingTime": "읽기 시간",
+      "deleteConfirm": "정말로 이 포스트를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+      "deleteError": "포스트 삭제에 실패했습니다",
+      "loadError": "포스트 로드에 실패했습니다",
+      "saveError": "포스트 저장에 실패했습니다",
+      "createSuccess": "포스트가 성공적으로 생성되었습니다",
+      "updateSuccess": "포스트가 성공적으로 업데이트되었습니다",
+      "saveDraft": "임시저장",
+      "publish": "게시",
+      "status": {
+        "draft": "임시저장",
+        "published": "게시됨"
+      },
+      "basicInfo": "기본 정보",
+      "basicInfoDescription": "포스트의 기본 정보를 입력하세요",
+      "title": "제목",
+      "titlePlaceholder": "포스트 제목을 입력하세요",
+      "excerpt": "요약",
+      "excerptPlaceholder": "포스트의 간단한 설명을 입력하세요",
+      "featuredImage": "대표 이미지",
+      "tags": "태그",
+      "tagsDescription": "포스트를 분류할 태그를 추가하세요",
+      "addTagPlaceholder": "태그 추가",
+      "content": "내용",
+      "contentDescription": "마크다운 형식으로 포스트 내용을 작성하세요",
+      "contentPlaceholder": "# 포스트 제목\n\n마크다운을 사용하여 내용을 작성하세요...\n\n## 코드 예제\n\n```javascript\nconsole.log('안녕하세요!');\n```",
+      "validation": {
+        "titleRequired": "한국어 제목은 필수입니다",
+        "contentRequired": "한국어 내용은 필수입니다"
+      }
+    }
   }
 }

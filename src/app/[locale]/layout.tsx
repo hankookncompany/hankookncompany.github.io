@@ -40,7 +40,7 @@ export async function generateMetadata({
     }
 
     const isKorean = locale === 'ko';
-    const baseUrl = "https://your-team.github.io"; // Update with actual GitHub Pages URL
+    const baseUrl = "https://hankookncompany.github.io"; // Update with actual GitHub Pages URL
 
     return {
         title: {

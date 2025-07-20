@@ -42,7 +42,7 @@ export function addLocaleToPathname(pathname: string, locale: Locale): string {
 /**
  * Get alternate locale URLs for SEO
  */
-export function getAlternateUrls(pathname: string, baseUrl: string = 'https://your-team.github.io') {
+export function getAlternateUrls(pathname: string, baseUrl: string = 'https://hankookncompany.github.io') {
   const currentLocale = getLocaleFromPathname(pathname);
   const pathWithoutLocale = removeLocaleFromPathname(pathname, currentLocale);
   
