@@ -1,7 +1,7 @@
 import { type Locale } from '@/i18n';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getBlogPost, getAuthor, getPublishedBlogPosts, checkPostExistsInLocale } from '@/lib/content';
-import { BlogPost } from '@/components/blog/BlogPost';
+import { BlogPostWithToc } from '@/components/blog/BlogPostWithToc';
 import { AuthorCard } from '@/components/authors/AuthorCard';
 import { BlogPostAnalytics } from '@/components/blog/BlogPostAnalytics';
 import { Button } from '@/components/ui/button';
@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const title = post.frontmatter.title;
   const description = post.frontmatter.excerpt;
   const author = await getAuthor(post.frontmatter.author, locale);
+  const commonT = await getTranslations({ locale, namespace: 'common' });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
   const postUrl = `${siteUrl}/${locale}/blog/${slug}`;
 
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     keywords: post.frontmatter.tags.join(', '),
     authors: author ? [{ name: author.name }] : undefined,
     creator: author?.name,
-    publisher: 'Team Tech Blog',
+    publisher: `${commonT('companyName')} ${commonT('siteName')}`,
     alternates: {
       canonical: postUrl,
       languages: alternateLanguages,
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description,
       type: 'article',
       url: postUrl,
-      siteName: 'Team Tech Blog',
+      siteName: commonT('siteName'),
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
       publishedTime: post.frontmatter.publishedAt,
       modifiedTime: post.frontmatter.updatedAt || post.frontmatter.publishedAt,
@@ -186,27 +187,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           }}
         />
 
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto py-4 sm:px-4 sm:py-8">
+          {/* Back Button */}
+          <div className="max-w-7xl 2xl:max-w-4xl mx-auto mb-4 sm:mb-8">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href={`/${locale}/blog`}>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                {t('backToBlog')}
+              </Link>
+            </Button>
+          </div>
+
+          {/* Blog Post with TOC - No width constraints here */}
+          <BlogPostWithToc
+            post={post}
+            author={author || undefined}
+            locale={locale}
+          />
+
+          {/* Author Bio Section */}
           <div className="max-w-4xl mx-auto">
-            {/* Back Button */}
-            <div className="mb-8">
-              <Button variant="ghost" size="sm" asChild>
-                <Link href={`/${locale}/blog`}>
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  {t('backToBlog')}
-                </Link>
-              </Button>
-            </div>
-
-            {/* Blog Post */}
-            <BlogPost
-              post={post}
-              author={author || undefined}
-              locale={locale}
-              showFullContent={true}
-            />
-
-            {/* Author Bio Section */}
             {author && (
               <div className="mt-12">
                 <h3 className="text-lg font-semibold mb-4">

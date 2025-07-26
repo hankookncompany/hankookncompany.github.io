@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
-import { Menu, X, Code2, Settings } from 'lucide-react';
+import { Logo } from '@/components/ui/logo';
+import { Menu, X, Settings } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { type Locale } from '@/i18n';
@@ -52,17 +53,20 @@ export function Header({ locale }: HeaderProps) {
         <div className="flex h-16 items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center">
-            <Link 
-              href={`/${locale}`} 
+            <Link
+              href={`/${locale}`}
               className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Code2 className="h-5 w-5" />
-              </div>
+              <Logo size={24} />
               <div className="hidden sm:block">
-                <span className="text-lg font-bold text-foreground">
-                  {locale === 'ko' ? '팀 기술 블로그' : 'Team Tech Blog'}
-                </span>
+                <div className="flex flex-col">
+                  <span className="hankook-brand text-xs text-muted-foreground">
+                    {t('companyName')}
+                  </span>
+                  <span className="text-lg font-semibold text-foreground leading-tight">
+                    {t('siteName')}
+                  </span>
+                </div>
               </div>
             </Link>
           </div>
@@ -76,8 +80,8 @@ export function Header({ locale }: HeaderProps) {
                   size="sm"
                   className={cn(
                     'text-sm font-medium transition-colors',
-                    isActiveLink(item.href) 
-                      ? 'text-foreground' 
+                    isActiveLink(item.href)
+                      ? 'text-foreground'
                       : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
@@ -91,7 +95,7 @@ export function Header({ locale }: HeaderProps) {
           <div className="flex items-center space-x-2">
             <ThemeToggle />
             <LanguageSwitcher />
-            
+
             {/* Mobile menu button */}
             <Button
               variant="ghost"
@@ -114,8 +118,8 @@ export function Header({ locale }: HeaderProps) {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 border-t bg-background/95 backdrop-blur">
               {navigation.map((item) => (
-                <Link 
-                  key={item.href} 
+                <Link
+                  key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -124,8 +128,8 @@ export function Header({ locale }: HeaderProps) {
                     size="sm"
                     className={cn(
                       'w-full justify-start text-sm font-medium',
-                      isActiveLink(item.href) 
-                        ? 'text-foreground' 
+                      isActiveLink(item.href)
+                        ? 'text-foreground'
                         : 'text-muted-foreground hover:text-foreground'
                     )}
                   >
@@ -133,11 +137,11 @@ export function Header({ locale }: HeaderProps) {
                   </Button>
                 </Link>
               ))}
-              
+
               {/* Mobile Theme and Language Controls */}
               <div className="flex items-center justify-between pt-2 mt-2 border-t">
                 <span className="text-sm text-muted-foreground">
-                  {locale === 'ko' ? '설정' : 'Settings'}
+                  {t('settings')}
                 </span>
                 <div className="flex items-center space-x-2">
                   <ThemeToggle />

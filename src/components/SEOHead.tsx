@@ -2,6 +2,7 @@
 
 import Head from 'next/head';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 interface SEOProps {
   title: string;
@@ -29,8 +30,9 @@ export function SEOHead({
   tags 
 }: SEOProps) {
   const pathname = usePathname();
+  const commonT = useTranslations('common');
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
-  const fullTitle = `${title} | Team Tech Blog`;
+  const fullTitle = `${title} | ${commonT('companyName')} ${commonT('siteName')}`;
   const ogImageUrl = ogImage || `${siteUrl}/og-default.png`;
   
   // Determine canonical URL
@@ -52,7 +54,7 @@ export function SEOHead({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
-      <meta property="og:site_name" content="Team Tech Blog" />
+      <meta property="og:site_name" content={`${commonT('companyName')} ${commonT('siteName')}`} />
       
       {/* Article-specific OG tags */}
       {ogType === 'article' && (

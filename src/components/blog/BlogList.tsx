@@ -60,7 +60,7 @@ export function BlogList({
   return (
     <div className="space-y-8">
       {/* Posts Grid */}
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-1">
+      <div className="grid gap-6 sm:grid-cols-1 xl:grid-cols-2">
         {posts.map((post) => (
           <BlogPost
             key={`${post.slug}-${post.locale}`}

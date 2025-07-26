@@ -2,7 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { Code2, Github, Mail, Heart } from 'lucide-react';
+import { Github, Mail, Heart } from 'lucide-react';
+import { Logo } from '@/components/ui/logo';
 import { type Locale } from '@/i18n';
 
 interface FooterProps {
@@ -26,12 +27,12 @@ export function Footer({ locale }: FooterProps) {
     social: [
       {
         name: 'GitHub',
-        href: 'https://github.com/hankookncompany', // Update with actual GitHub URL
+        href: 'https://github.com/hankookncompany',
         icon: Github,
       },
       {
         name: 'Email',
-        href: 'mailto:team@yourcompany.com', // Update with actual email
+        href: 'mailto:eyehyun@hankookn.com',
         icon: Mail,
       },
     ],
@@ -45,25 +46,25 @@ export function Footer({ locale }: FooterProps) {
             {/* Brand Section */}
             <div className="sm:col-span-2 lg:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Code2 className="h-5 w-5" />
+                <Logo size={48} />
+                <div className="flex flex-col">
+                  <span className="hankook-brand text-sm text-muted-foreground leading-tight">
+                    {tCommon('companyName')}
+                  </span>
+                  <span className="text-lg font-bold text-foreground leading-tight">
+                    {tCommon('siteName')}
+                  </span>
                 </div>
-                <span className="text-lg font-bold text-foreground">
-                  {locale === 'ko' ? '팀 기술 블로그' : 'Team Tech Blog'}
-                </span>
               </div>
               <p className="text-sm text-muted-foreground max-w-md">
-                {locale === 'ko' 
-                  ? '개발팀의 지식 공유, 학습 기록, 그리고 기술적 인사이트를 담은 현대적인 기술 블로그 플랫폼입니다.'
-                  : 'A modern tech blog platform for sharing knowledge, documenting learnings, and showcasing technical insights from our development team.'
-                }
+                {t('description')}
               </p>
             </div>
 
             {/* Navigation Links */}
             <div>
               <h3 className="text-sm font-semibold text-foreground mb-4">
-                {locale === 'ko' ? '탐색' : 'Navigation'}
+                {t('navigation')}
               </h3>
               <ul className="space-y-2">
                 {footerLinks.navigation.map((link) => (
@@ -82,7 +83,7 @@ export function Footer({ locale }: FooterProps) {
             {/* Social Links */}
             <div>
               <h3 className="text-sm font-semibold text-foreground mb-4">
-                {locale === 'ko' ? '연결' : 'Connect'}
+                {t('connect')}
               </h3>
               <ul className="space-y-2">
                 {footerLinks.social.map((link) => (
@@ -106,12 +107,12 @@ export function Footer({ locale }: FooterProps) {
           <div className="mt-8 pt-8 border-t">
             <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
               <p className="text-sm text-muted-foreground text-center sm:text-left">
-                © {currentYear} {locale === 'ko' ? '팀 기술 블로그' : 'Team Tech Blog'}. {locale === 'ko' ? '모든 권리 보유.' : 'All rights reserved.'}
+                © {currentYear} Hankook&Company Digital Tech Team. {t('copyright')}
               </p>
               <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                <span>{locale === 'ko' ? 'Next.js와' : 'Built with Next.js and'}</span>
+                <span>{t('builtWith')}</span>
                 <Heart className="h-4 w-4 text-red-500" />
-                <span>{locale === 'ko' ? '로 제작' : ''}</span>
+                <span>{t('builtWithSuffix')}</span>
               </div>
             </div>
           </div>

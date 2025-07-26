@@ -7,7 +7,7 @@ import {
 } from './og-image';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-team.github.io';
-const SITE_NAME = 'Team Tech Blog';
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'Hankook& Digital Tech'
 
 interface BaseMetadataProps {
   title: string;

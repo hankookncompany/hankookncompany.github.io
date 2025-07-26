@@ -12,6 +12,7 @@ interface AuthorsPageProps {
 export async function generateMetadata({ params }: AuthorsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'authors' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
   
   return {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: AuthorsPageProps): Promise<Me
       title: t('title'),
       description: t('allAuthors'),
       url: `${siteUrl}/${locale}/authors`,
-      siteName: 'Team Tech Blog',
+      siteName: `${commonT('companyName')} ${commonT('siteName')}`,
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
       type: 'website',
     },

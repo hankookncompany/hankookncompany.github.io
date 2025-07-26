@@ -3,24 +3,69 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
+// Utility function to generate heading IDs
+const generateHeadingId = (children: React.ReactNode): string => {
+  if (typeof children === 'string') {
+    return children
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .trim();
+  }
+  return '';
+};
+
 // Custom components that can be used in MDX files
 const mdxComponents: MDXComponents = {
   // Override default HTML elements
-  h1: ({ children, ...props }) => (
-    <h1 className="text-3xl font-bold mb-6 mt-8 scroll-m-20" {...props}>
-      {children}
-    </h1>
-  ),
-  h2: ({ children, ...props }) => (
-    <h2 className="text-2xl font-semibold mb-4 mt-6 scroll-m-20" {...props}>
-      {children}
-    </h2>
-  ),
-  h3: ({ children, ...props }) => (
-    <h3 className="text-xl font-medium mb-3 mt-5 scroll-m-20" {...props}>
-      {children}
-    </h3>
-  ),
+  h1: ({ children, ...props }) => {
+    const id = props.id || generateHeadingId(children);
+    return (
+      <h1 className="text-3xl font-bold mb-6 mt-8 scroll-m-20" id={id} {...props}>
+        {children}
+      </h1>
+    );
+  },
+  h2: ({ children, ...props }) => {
+    const id = props.id || generateHeadingId(children);
+    return (
+      <h2 className="text-2xl font-semibold mb-4 mt-6 scroll-m-20" id={id} {...props}>
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children, ...props }) => {
+    const id = props.id || generateHeadingId(children);
+    return (
+      <h3 className="text-xl font-medium mb-3 mt-5 scroll-m-20" id={id} {...props}>
+        {children}
+      </h3>
+    );
+  },
+  h4: ({ children, ...props }) => {
+    const id = props.id || generateHeadingId(children);
+    return (
+      <h4 className="text-lg font-medium mb-2 mt-4 scroll-m-20" id={id} {...props}>
+        {children}
+      </h4>
+    );
+  },
+  h5: ({ children, ...props }) => {
+    const id = props.id || generateHeadingId(children);
+    return (
+      <h5 className="text-base font-medium mb-2 mt-3 scroll-m-20" id={id} {...props}>
+        {children}
+      </h5>
+    );
+  },
+  h6: ({ children, ...props }) => {
+    const id = props.id || generateHeadingId(children);
+    return (
+      <h6 className="text-sm font-medium mb-2 mt-3 scroll-m-20" id={id} {...props}>
+        {children}
+      </h6>
+    );
+  },
   p: ({ children, ...props }) => (
     <p className="mb-4 leading-relaxed" {...props}>
       {children}

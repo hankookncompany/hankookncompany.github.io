@@ -1,8 +1,6 @@
-import { useTranslations } from 'next-intl';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Locale } from '@/i18n';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { getProducts, getPublishedBlogPosts } from '@/lib/content';
 
 export default async function Home({ params }: { params: Promise<{ locale: Locale }> }) {
@@ -12,6 +10,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
   setRequestLocale(locale);
 
   const t = await getTranslations();
+  const commonT = await getTranslations('common');
 
   // Get content for preview
   const products = await getProducts(locale);
@@ -24,7 +23,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: locale === 'ko' ? '팀 기술 블로그' : 'Team Tech Blog',
+    name: commonT('siteName'),
     description: locale === 'ko'
       ? '개발팀의 지식 공유, 학습 기록, 그리고 기술적 인사이트를 담은 현대적인 기술 블로그 플랫폼입니다.'
       : 'A modern tech blog platform for sharing knowledge, documenting learnings, and showcasing technical insights from our development team.',
@@ -32,7 +31,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
     inLanguage: locale === 'ko' ? 'ko-KR' : 'en-US',
     publisher: {
       '@type': 'Organization',
-      name: 'Team Tech Blog',
+      name: `${commonT('companyName')} ${commonT('siteName')}`,
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
@@ -88,48 +87,58 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="p-6 border rounded-lg">
+            <div className="p-6 border rounded-lg flex flex-col h-full">
               <h2 className="text-2xl font-semibold mb-3">{t('home.blogSection.title')}</h2>
               <p className="text-muted-foreground mb-4">
                 {t('home.blogSection.description')}
               </p>
+              <div className="flex-grow"></div>
               {blogPosts.length > 0 ? (
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
                     {blogPosts.length} posts available
                   </p>
-                  <Button asChild>
-                    <Link href={`/${locale}/blog`}>
-                      View Blog Posts
-                    </Link>
-                  </Button>
+                  <Link
+                    href={`/${locale}/blog`}
+                    className="text-muted-foreground hover:text-highlight hover:underline hover:font-medium transition-all duration-200 inline-flex items-center"
+                  >
+                    View Blog Posts →
+                  </Link>
                 </div>
               ) : (
-                <div className="text-sm text-muted-foreground">
-                  {t('home.blogSection.comingSoon')}
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">
+                    {t('home.blogSection.comingSoon')}
+                  </p>
+                  <div className="h-6"></div>
                 </div>
               )}
             </div>
 
-            <div className="p-6 border rounded-lg">
+            <div className="p-6 border rounded-lg flex flex-col h-full">
               <h2 className="text-2xl font-semibold mb-3">{t('home.showcaseSection.title')}</h2>
               <p className="text-muted-foreground mb-4">
                 {t('home.showcaseSection.description')}
               </p>
+              <div className="flex-grow"></div>
               {products.length > 0 ? (
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
                     {products.length} projects available
                   </p>
-                  <Button asChild>
-                    <Link href={`/${locale}/showcase`}>
-                      View Projects
-                    </Link>
-                  </Button>
+                  <Link
+                    href={`/${locale}/showcase`}
+                    className="text-muted-foreground hover:text-highlight hover:underline hover:font-medium transition-all duration-200 inline-flex items-center"
+                  >
+                    View Projects →
+                  </Link>
                 </div>
               ) : (
-                <div className="text-sm text-muted-foreground">
-                  {t('home.showcaseSection.comingSoon')}
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">
+                    {t('home.showcaseSection.comingSoon')}
+                  </p>
+                  <div className="h-6"></div>
                 </div>
               )}
             </div>

@@ -75,7 +75,7 @@ export function BlogPost({ post, author, locale, showFullContent = false }: Blog
   };
 
   return (
-    <Card className="w-full pt-0">
+    <Card className="w-full h-full flex flex-col pt-0">
       {post.frontmatter.featuredImage && (
         <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
           <Image
@@ -146,23 +146,27 @@ export function BlogPost({ post, author, locale, showFullContent = false }: Blog
         </div>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="flex-grow flex flex-col">
         {showFullContent ? (
           <div className="mdx-content prose prose-slate dark:prose-invert max-w-none">
             {mdxSource && <MDXRemote {...mdxSource} components={mdxComponents} />}
           </div>
         ) : (
-          <div>
-            <p className="text-muted-foreground mb-4 line-clamp-3">
-              {post.frontmatter.excerpt}
-            </p>
-            <Link
-              href={`/${locale}/blog/${post.slug}`}
-              className="text-primary hover:underline font-medium"
-            >
-              {t('readMore')} →
-            </Link>
-          </div>
+          <>
+            <div className="flex-grow">
+              <p className="text-muted-foreground mb-4 line-clamp-3">
+                {post.frontmatter.excerpt}
+              </p>
+            </div>
+            <div className="mt-auto">
+              <Link
+                href={`/${locale}/blog/${post.slug}`}
+                className="text-muted-foreground hover:text-highlight hover:underline hover:font-medium transition-all duration-200 inline-flex items-center"
+              >
+                {t('readMore')} →
+              </Link>
+            </div>
+          </>
         )}
       </CardContent>
     </Card>

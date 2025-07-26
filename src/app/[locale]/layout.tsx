@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n';
 import { RootLayout } from '@/components/layout/RootLayout';
@@ -39,13 +39,14 @@ export async function generateMetadata({
         notFound();
     }
 
+    const commonT = await getTranslations({ locale, namespace: 'common' });
     const isKorean = locale === 'ko';
     const baseUrl = "https://hankookncompany.github.io"; // Update with actual GitHub Pages URL
 
     return {
         title: {
-            default: isKorean ? "팀 기술 블로그" : "Team Tech Blog",
-            template: isKorean ? "%s | 팀 기술 블로그" : "%s | Team Tech Blog",
+            default: `${commonT('companyName')} ${commonT('siteName')}`,
+            template: `%s | ${commonT('companyName')} ${commonT('siteName')}`,
         },
         description: isKorean
             ? "개발팀의 지식 공유, 학습 기록, 그리고 기술적 인사이트를 담은 현대적인 기술 블로그 플랫폼입니다."
@@ -61,8 +62,8 @@ export async function generateMetadata({
             locale: locale === 'ko' ? "ko_KR" : "en_US",
             alternateLocale: locale === 'ko' ? "en_US" : "ko_KR",
             url: `${baseUrl}/${locale}`,
-            siteName: isKorean ? "팀 기술 블로그" : "Team Tech Blog",
-            title: isKorean ? "팀 기술 블로그" : "Team Tech Blog",
+            siteName: `${commonT('companyName')} ${commonT('siteName')}`,
+            title: `${commonT('companyName')} ${commonT('siteName')}`,
             description: isKorean
                 ? "개발팀의 지식 공유와 기술적 인사이트를 담은 현대적인 기술 블로그 플랫폼"
                 : "A modern tech blog platform for sharing knowledge and technical insights from our development team.",
@@ -71,13 +72,13 @@ export async function generateMetadata({
                     url: `${baseUrl}/og-default.png`, // Default OG image
                     width: 1200,
                     height: 630,
-                    alt: isKorean ? "팀 기술 블로그" : "Team Tech Blog",
+                    alt: commonT('siteName'),
                 },
             ],
         },
         twitter: {
             card: "summary_large_image",
-            title: isKorean ? "팀 기술 블로그" : "Team Tech Blog",
+            title: commonT('siteName'),
             description: isKorean
                 ? "개발팀의 지식 공유와 기술적 인사이트를 담은 현대적인 기술 블로그 플랫폼"
                 : "A modern tech blog platform for sharing knowledge and technical insights from our development team.",

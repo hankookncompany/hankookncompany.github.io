@@ -59,7 +59,7 @@ export function LanguageSwitcher() {
           className="text-sm font-medium"
         >
           <Globe className="h-4 w-4 mr-1" />
-          {locale === 'ko' ? 'EN' : '한'}
+          {locale === 'ko' ? t('switchToEnglish') : t('switchToKorean')}
         </Button>
       </div>
 

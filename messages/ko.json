@@ -5,6 +5,7 @@
     "showcase": "쇼케이스",
     "authors": "팀원",
     "about": "소개",
+    "press": "보도자료",
     "language": "언어",
     "korean": "한국어",
     "english": "English",
@@ -13,11 +14,17 @@
     "loading": "로딩 중...",
     "error": "오류가 발생했습니다",
     "notFound": "페이지를 찾을 수 없습니다",
-    "pageNotFoundMessage": "찾으시는 페이지가 존재하지 않거나 이동되었습니다."
+    "pageNotFoundMessage": "찾으시는 페이지가 존재하지 않거나 이동되었습니다.",
+    "siteName": "디지털테크",
+    "siteNameFull": "한국앤컴퍼니 디지털테크팀",
+    "companyName": "Hankook&",
+    "settings": "설정",
+    "switchToEnglish": "EN",
+    "switchToKorean": "한"
   },
   "home": {
-    "title": "팀 기술 블로그",
-    "subtitle": "개발팀의 지식 공유, 학습 기록, 그리고 기술적 인사이트를 담은 공간입니다.",
+    "title": "디지털테크팀",
+    "subtitle": "AI와 데이터를 통한 회사 직원들의 Open Innovation을 위한 서비스와 플랫폼을 만들어나가고 있습니다.",
     "blogSection": {
       "title": "블로그 포스트",
       "description": "팀원들이 작성한 기술 블로그 포스트를 확인하세요.",
@@ -25,7 +32,7 @@
     },
     "showcaseSection": {
       "title": "프로젝트 쇼케이스",
-      "description": "팀에서 개발한 프로젝트들을 살펴보세요.",
+      "description": "디지털테크팀에서 개발한 프로젝트들을 살펴보세요.",
       "comingSoon": "곧 프로젝트 쇼케이스가 추가될 예정입니다."
     },
     "techStack": "기술 스택"
@@ -83,6 +90,23 @@
       "archived": "보관됨"
     }
   },
+  "press": {
+    "title": "보도자료",
+    "subtitle": "한국앤컴퍼니의 디지털 혁신과 성과를 확인하세요",
+    "allPress": "모든 보도자료",
+    "recentPress": "최근 보도자료",
+    "publishedOn": "보도일",
+    "source": "언론사",
+    "readArticle": "기사 읽기",
+    "emptyState": "아직 등록된 보도자료가 없습니다. 곧 새로운 소식을 만나보세요!",
+    "categories": {
+      "all": "전체",
+      "technology": "기술",
+      "innovation": "혁신",
+      "partnership": "파트너십",
+      "achievement": "성과"
+    }
+  },
   "authors": {
     "title": "팀원",
     "allAuthors": "모든 팀원",
@@ -95,15 +119,20 @@
     "noContent": "아직 작성한 포스트나 참여한 프로젝트가 없습니다."
   },
   "footer": {
-    "copyright": "© 2024 Team Tech Blog. All rights reserved.",
-    "builtWith": "Built with Next.js and ❤️"
+    "siteName": "디지털테크팀",
+    "description": "AI와 데이터를 통한 회사 직원들의 Open Innovation을 위한 서비스와 플랫폼을 만들어나가고 있습니다.",
+    "navigation": "탐색",
+    "connect": "연결",
+    "copyright": "모든 권리 보유.",
+    "builtWith": "Next.js와",
+    "builtWithSuffix": "로 제작"
   },
   "about": {
     "title": "팀 소개",
-    "subtitle": "저희 개발팀과 기술 블로그에 대해 알아보세요",
+    "subtitle": "한국앤컴퍼니 디지털테크팀에 대해 알아보세요",
     "teamOverview": {
       "title": "팀 개요",
-      "description": "저희는 최신 웹 기술을 활용하여 혁신적인 솔루션을 개발하는 팀입니다. 이 블로그는 저희의 기술적 경험과 지식을 공유하기 위한 공간입니다.",
+      "description": "저희는 AI와 데이터를 통해 회사 직원들의 Open Innovation을 위한 서비스와 플랫폼을 만들어나가고 있는 디지털테크팀입니다. 최신 기술을 활용하여 혁신적인 솔루션을 개발하고, 직원들의 업무 효율성과 창의성을 높이는 것이 저희의 목표입니다.",
       "meetTeam": "팀원 소개",
       "teamDescription": "저희 팀은 다양한 배경과 전문성을 가진 개발자들로 구성되어 있습니다. 각 팀원의 프로필을 확인하고 그들이 작성한 글과 참여한 프로젝트를 살펴보세요.",
       "viewMembers": "팀원 보기"
@@ -119,7 +148,7 @@
     },
     "contact": {
       "title": "연락처",
-      "description": "질문이나 협업 제안이 있으시면 언제든지 연락해주세요. 저희는 항상 새로운 아이디어와 프로젝트에 열려 있습니다.",
+      "description": "AI와 데이터 관련 질문이나 협업 제안이 있으시면 언제든지 연락해주세요. 저희는 항상 새로운 아이디어와 혁신적인 프로젝트에 열려 있습니다.",
       "email": "이메일",
       "socialMedia": "소셜 미디어"
     }
@@ -163,7 +192,7 @@
       },
       "basicInfo": "기본 정보",
       "basicInfoDescription": "포스트의 기본 정보를 입력하세요",
-      "title": "제목",
+      "postTitle": "제목",
       "titlePlaceholder": "포스트 제목을 입력하세요",
       "excerpt": "요약",
       "excerptPlaceholder": "포스트의 간단한 설명을 입력하세요",

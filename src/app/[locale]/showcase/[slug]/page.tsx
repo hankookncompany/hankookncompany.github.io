@@ -63,7 +63,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Team Tech Blog',
+      name: `${common('companyName')} ${common('siteName')}`,
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',

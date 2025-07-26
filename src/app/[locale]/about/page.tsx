@@ -44,15 +44,14 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">{t('title')}</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          {t('subtitle')}
-        </p>
-      </div>
-
       <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="text-3xl font-bold mb-4">{t('title')}</h1>
+          <p className="text-xl text-muted-foreground">
+            {t('subtitle')}
+          </p>
+        </div>
         {/* Team Overview */}
         <Card className="mb-8">
           <CardHeader>

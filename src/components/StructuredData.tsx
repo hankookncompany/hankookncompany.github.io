@@ -9,6 +9,7 @@ interface BlogPostStructuredDataProps {
   datePublished: string;
   dateModified: string;
   authorName: string;
+  siteName: string;
   authorUrl?: string;
   imageUrl?: string;
   tags?: string[];
@@ -20,6 +21,7 @@ export function BlogPostStructuredData({
   datePublished,
   dateModified,
   authorName,
+  siteName,
   authorUrl,
   imageUrl,
   tags = [],
@@ -43,7 +45,7 @@ export function BlogPostStructuredData({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Team Tech Blog',
+      name: siteName,
       logo: {
         '@type': 'ImageObject',
         url: `${siteUrl}/logo.png`,

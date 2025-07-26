@@ -8,6 +8,7 @@ declare const messages: {
     "showcase": "Showcase",
     "authors": "Authors",
     "about": "About",
+    "press": "Press",
     "language": "Language",
     "korean": "한국어",
     "english": "English",
@@ -16,11 +17,17 @@ declare const messages: {
     "loading": "Loading...",
     "error": "An error occurred",
     "notFound": "Page not found",
-    "pageNotFoundMessage": "The page you are looking for does not exist or has been moved."
+    "pageNotFoundMessage": "The page you are looking for does not exist or has been moved.",
+    "siteName": "Digital Tech",
+    "siteNameFull": "Hankook&Company Digital Tech Team",
+    "companyName": "Hankook&",
+    "settings": "Settings",
+    "switchToEnglish": "EN",
+    "switchToKorean": "한"
   },
   "home": {
-    "title": "Team Tech Blog",
-    "subtitle": "A space for our development team's knowledge sharing, learning records, and technical insights.",
+    "title": "Digital Tech Team",
+    "subtitle": "We create services and platforms for employees' Open Innovation through AI and data technologies.",
     "blogSection": {
       "title": "Blog Posts",
       "description": "Check out technical blog posts written by our team members.",
@@ -28,7 +35,7 @@ declare const messages: {
     },
     "showcaseSection": {
       "title": "Project Showcase",
-      "description": "Explore projects developed by our team.",
+      "description": "Explore projects developed by Digital Tech Team.",
       "comingSoon": "Project showcase will be added soon."
     },
     "techStack": "Tech Stack"
@@ -86,6 +93,23 @@ declare const messages: {
       "archived": "Archived"
     }
   },
+  "press": {
+    "title": "Press Coverage",
+    "subtitle": "Discover HankookN&Company's digital innovation and achievements",
+    "allPress": "All Press",
+    "recentPress": "Recent Press",
+    "publishedOn": "Published",
+    "source": "Source",
+    "readArticle": "Read Article",
+    "emptyState": "No press coverage available yet. Stay tuned for news!",
+    "categories": {
+      "all": "All",
+      "technology": "Technology",
+      "innovation": "Innovation",
+      "partnership": "Partnership",
+      "achievement": "Achievement"
+    }
+  },
   "authors": {
     "title": "Team Members",
     "allAuthors": "All Team Members",
@@ -98,15 +122,20 @@ declare const messages: {
     "noContent": "No posts or projects found for this author yet."
   },
   "footer": {
-    "copyright": "© 2024 Team Tech Blog. All rights reserved.",
-    "builtWith": "Built with Next.js and ❤️"
+    "siteName": "Digital Tech Team",
+    "description": "We create services and platforms for employees' Open Innovation through AI and data technologies.",
+    "navigation": "Navigation",
+    "connect": "Connect",
+    "copyright": "All rights reserved.",
+    "builtWith": "Built with Next.js and",
+    "builtWithSuffix": ""
   },
   "about": {
     "title": "About Our Team",
-    "subtitle": "Learn more about our development team and tech blog",
+    "subtitle": "Learn more about HankookN&Company Digital Tech Team",
     "teamOverview": {
       "title": "Team Overview",
-      "description": "We are a team developing innovative solutions using the latest web technologies. This blog is a space to share our technical experiences and knowledge.",
+      "description": "We are the Digital Tech Team creating services and platforms for employees' Open Innovation through AI and data technologies. Our goal is to develop innovative solutions using cutting-edge technology and enhance employees' work efficiency and creativity.",
       "meetTeam": "Meet Our Team",
       "teamDescription": "Our team consists of developers with diverse backgrounds and expertise. Check out each team member's profile to see their posts and projects.",
       "viewMembers": "View Team Members"
@@ -121,8 +150,8 @@ declare const messages: {
       "principle4": "Test-driven development and automation"
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions or collaboration proposals, feel free to contact us. We are always open to new ideas and projects.",
+      "title": "Contact",
+      "description": "If you have any questions about AI and data or collaboration proposals, please feel free to contact us. We are always open to new ideas and innovative projects.",
       "email": "Email",
       "socialMedia": "Social Media"
     }
@@ -166,7 +195,7 @@ declare const messages: {
       },
       "basicInfo": "Basic Information",
       "basicInfoDescription": "Enter the basic information for your post",
-      "title": "Title",
+      "postTitle": "Title",
       "titlePlaceholder": "Enter post title",
       "excerpt": "Excerpt",
       "excerptPlaceholder": "Brief description of your post",

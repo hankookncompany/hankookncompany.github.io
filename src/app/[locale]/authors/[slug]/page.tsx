@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
   }
 
   const t = await getTranslations({ locale, namespace: 'authors' });
+  const commonT = await getTranslations({ locale, namespace: 'common' });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io';
   const authorUrl = `${siteUrl}/${locale}/authors/${slug}`;
 
@@ -56,7 +57,7 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
       title: author.name,
       description: author.bio,
       url: authorUrl,
-      siteName: 'Team Tech Blog',
+      siteName: commonT('siteName'),
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
       type: 'profile',
       images: author.avatar ? [
