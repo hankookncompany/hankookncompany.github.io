@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run generate:og && NEXT_OUTPUT=export next build && next-sitemap",
+    "build": "npm run generate:og && npm run build:next && npm run build:sitemap",
+    "build:next": "NEXT_OUTPUT=export next build",
+    "build:sitemap": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",

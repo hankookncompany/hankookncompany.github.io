@@ -3,6 +3,7 @@ module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://hankookncompany.github.io',
   generateRobotsTxt: true,
   generateIndexSitemap: true,
+  outDir: './out', // Next.js export 폴더 지정
   alternateRefs: [
     {
       href: 'https://hankookncompany.github.io/ko',

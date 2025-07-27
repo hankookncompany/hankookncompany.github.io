@@ -38,7 +38,19 @@ jobs:
         run: npm install
       
       - name: Build with Next.js
-        run: npm run build
+        run: |
+          echo "Starting build process..."
+          npm run build
+          echo "Build completed. Checking results..."
+      
+      - name: Check sitemap files
+        run: |
+          echo "Checking if sitemap files exist in out directory:"
+          ls -la ./out/sitemap* || echo "No sitemap files found"
+          echo "Contents of out directory:"
+          ls -la ./out
+          echo "Checking robots.txt:"
+          cat ./out/robots.txt || echo "No robots.txt found"
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
