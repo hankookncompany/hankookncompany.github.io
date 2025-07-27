@@ -4,19 +4,8 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n';
 import { RootLayout } from '@/components/layout/RootLayout';
-import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import '../globals.css';
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 type Props = {
     children: React.ReactNode;
@@ -103,9 +92,6 @@ export async function generateMetadata({
                 'x-default': `${baseUrl}/ko`,
             },
         },
-        verification: {
-            google: "dBTSxQy2q_9nv-cGMmFc9cXnckpUNrrfITTjUFRc8z0",
-        },
         category: 'technology',
     };
 }
@@ -124,25 +110,13 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
     return (
-        <html lang={locale} suppressHydrationWarning>
-            <head>
-                <meta name="google-site-verification" content="dBTSxQy2q_9nv-cGMmFc9cXnckpUNrrfITTjUFRc8z0" />
-                <link rel="icon" href="/favicon.ico" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                <link rel="manifest" href="/site.webmanifest" />
-                <meta name="theme-color" content="#ffffff" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </head>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background font-sans`}>
-                <GoogleAnalytics />
-                <NextIntlClientProvider>
-                    <RootLayout locale={locale as Locale}>
-                        {children}
-                    </RootLayout>
-                </NextIntlClientProvider>
-            </body>
-        </html>
+        <>
+            <GoogleAnalytics />
+            <NextIntlClientProvider>
+                <RootLayout locale={locale as Locale}>
+                    {children}
+                </RootLayout>
+            </NextIntlClientProvider>
+        </>
     );
 }
