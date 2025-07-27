@@ -104,7 +104,7 @@ export async function generateMetadata({
             },
         },
         verification: {
-            google: "your-google-verification-code", // Add actual verification code
+            google: "dBTSxQy2q_9nv-cGMmFc9cXnckpUNrrfITTjUFRc8z0",
         },
         category: 'technology',
     };
@@ -126,6 +126,7 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} suppressHydrationWarning>
             <head>
+                <meta name="google-site-verification" content="dBTSxQy2q_9nv-cGMmFc9cXnckpUNrrfITTjUFRc8z0" />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
