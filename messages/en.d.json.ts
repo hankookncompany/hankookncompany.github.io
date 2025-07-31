@@ -170,6 +170,7 @@ declare const messages: {
     "posts": {
       "title": "Posts",
       "description": "Manage your blog posts",
+      "loading": "Loading...",
       "total": "posts",
       "empty": "No posts found",
       "create": "Create Post",

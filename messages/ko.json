@@ -167,6 +167,7 @@
     "posts": {
       "title": "포스트",
       "description": "블로그 포스트를 관리하세요",
+      "loading": "포스트를 불러오는 중...",
       "total": "개 포스트",
       "empty": "포스트가 없습니다",
       "create": "포스트 작성",

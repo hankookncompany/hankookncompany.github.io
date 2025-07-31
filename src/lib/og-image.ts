@@ -9,28 +9,32 @@ export const OG_IMAGE_HEIGHT = 630;
 // Template configuration for different content types
 export const OG_TEMPLATES = {
   blog: {
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    accent: '#4f46e5',
-    textColor: '#ffffff',
-    subtextColor: '#e2e8f0',
+    background: '#ffffff',
+    accent: '#3b82f6',
+    textColor: '#1f2937',
+    subtextColor: '#6b7280',
+    badgeColor: '#3b82f6',
   },
   product: {
-    background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    background: '#ffffff',
     accent: '#ec4899',
-    textColor: '#ffffff',
-    subtextColor: '#fce7f3',
+    textColor: '#1f2937',
+    subtextColor: '#6b7280',
+    badgeColor: '#ec4899',
   },
   home: {
-    background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    background: '#ffffff',
     accent: '#0ea5e9',
-    textColor: '#ffffff',
-    subtextColor: '#e0f2fe',
+    textColor: '#1f2937',
+    subtextColor: '#6b7280',
+    badgeColor: '#0ea5e9',
   },
   author: {
-    background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+    background: '#ffffff',
     accent: '#06b6d4',
     textColor: '#1f2937',
     subtextColor: '#6b7280',
+    badgeColor: '#06b6d4',
   },
 } as const;
 
@@ -47,18 +51,66 @@ export interface OGImageOptions {
   avatar?: string;
 }
 
+// Tech badge color mapping for text-based badges
+const TECH_BADGES: Record<string, { color: string }> = {
+  // Programming Languages
+  JavaScript: { color: "F7DF1E" },
+  TypeScript: { color: "3178C6" },
+  Python: { color: "3776AB" },
+  Java: { color: "ED8B00" },
+  "C++": { color: "00599C" },
+  "C#": { color: "239120" },
+  Go: { color: "00ADD8" },
+  Rust: { color: "000000" },
+
+  // Frontend Frameworks
+  React: { color: "61DAFB" },
+  "Next.js": { color: "000000" },
+  Vue: { color: "4FC08D" },
+  Angular: { color: "DD0031" },
+  Svelte: { color: "f1413d" },
+
+  // Backend Frameworks
+  "Node.js": { color: "6DA55F" },
+  Express: { color: "404d59" },
+  Django: { color: "092E20" },
+  Flask: { color: "000000" },
+  FastAPI: { color: "009485" },
+
+  // CSS Frameworks & Libraries
+  "Tailwind CSS": { color: "38B2AC" },
+  Tailwind: { color: "38B2AC" },
+  Bootstrap: { color: "7952B3" },
+
+  // Databases
+  MongoDB: { color: "4ea94b" },
+  PostgreSQL: { color: "316192" },
+  MySQL: { color: "4479A1" },
+  Redis: { color: "DD0031" },
+
+  // Cloud & DevOps
+  AWS: { color: "FF9900" },
+  Docker: { color: "2496ED" },
+  Vercel: { color: "000000" },
+
+  // Tools & Others
+  Git: { color: "F05032" },
+  GitHub: { color: "121011" },
+};
+
 /**
- * Create a simple OG image with minimal structure
+ * Create a modern OG image with logo and user avatar
  */
 function createSimpleOGImage(options: OGImageOptions) {
   const template = OG_TEMPLATES[options.type];
-  const { title, subtitle, author, tags = [], locale, publishedDate } = options;
+  const { title, subtitle, author, tags = [], locale, publishedDate, avatar } = options;
 
   // Truncate title if too long
-  const truncatedTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+  const truncatedTitle = title.length > 50 ? title.substring(0, 47) + '...' : title;
+  const truncatedSubtitle = subtitle && subtitle.length > 120 ? subtitle.substring(0, 117) + '...' : subtitle;
 
-  // Show max 2 tags
-  const displayTags = tags.slice(0, 2);
+  // Show max 3 tags
+  const displayTags = tags.slice(0, 3);
 
   const contentTypeBadgeText =
     options.type === 'blog' ? (locale === 'ko' ? '블로그' : 'Blog') :
@@ -66,7 +118,7 @@ function createSimpleOGImage(options: OGImageOptions) {
         options.type === 'author' ? (locale === 'ko' ? '팀원' : 'Team') :
           locale === 'ko' ? '홈' : 'Home';
 
-
+  const siteName = locale === 'ko' ? 'Hankook& 디지털테크' : 'Hankook& Digital Tech';
 
   return React.createElement(
     'div',
@@ -78,14 +130,15 @@ function createSimpleOGImage(options: OGImageOptions) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         padding: '80px',
         position: 'relative',
         fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+        border: '1px solid #e5e7eb',
       },
     },
     [
-      // Brand badge (top right)
+      // Logo and site name (top right)
       React.createElement(
         'div',
         {
@@ -94,15 +147,56 @@ function createSimpleOGImage(options: OGImageOptions) {
             position: 'absolute',
             top: '40px',
             right: '40px',
-            background: 'rgba(255,255,255,0.2)',
-            borderRadius: '12px',
-            padding: '12px 20px',
-            fontSize: '16px',
-            fontWeight: '600',
-            color: template.textColor,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
           },
         },
-        'Team Tech Blog'
+        [
+          React.createElement('img', {
+            key: 'logo',
+            src: 'https://hankookncompany.github.io/logo.svg',
+            alt: 'Logo',
+            width: 32,
+            height: 32,
+            style: {
+              width: '32px',
+              height: '32px',
+            },
+          }),
+          React.createElement(
+            'div',
+            {
+              key: 'site-name',
+              style: {
+                fontSize: '16px',
+                fontWeight: '600',
+                color: template.textColor,
+              },
+            },
+            siteName,
+          ),
+        ],
+      ),
+
+      // Content type badge (top left)
+      React.createElement(
+        'div',
+        {
+          key: 'type-badge',
+          style: {
+            background: template.accent,
+            color: '#ffffff',
+            padding: '8px 16px',
+            borderRadius: '20px',
+            fontSize: '14px',
+            fontWeight: '500',
+            marginBottom: '32px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+          },
+        },
+        contentTypeBadgeText,
       ),
 
       // Main title
@@ -111,102 +205,135 @@ function createSimpleOGImage(options: OGImageOptions) {
         {
           key: 'title',
           style: {
-            fontSize: '56px',
-            fontWeight: 'bold',
+            fontSize: '64px',
+            fontWeight: '800',
             color: template.textColor,
-            margin: '0 0 40px 0',
+            margin: '0 0 24px 0',
             lineHeight: '1.1',
-            textAlign: 'center',
-            maxWidth: '1000px',
+            maxWidth: '900px',
           },
         },
-        truncatedTitle
+        truncatedTitle,
       ),
 
       // Subtitle
-      subtitle ? React.createElement(
+      truncatedSubtitle ? React.createElement(
         'p',
         {
           key: 'subtitle',
           style: {
-            fontSize: '28px',
-            color: template.subtextColor,
-            margin: '0 0 40px 0',
-            textAlign: 'center',
-            lineHeight: '1.3',
-            maxWidth: '800px',
-          },
-        },
-        subtitle.length > 100 ? subtitle.substring(0, 97) + '...' : subtitle
-      ) : null,
-
-      // Author info
-      author ? React.createElement(
-        'div',
-        {
-          key: 'author',
-          style: {
             fontSize: '24px',
             color: template.subtextColor,
-            margin: '0 0 30px 0',
-            fontWeight: '500',
+            margin: '0 0 40px 0',
+            lineHeight: '1.4',
+            maxWidth: '800px',
+            fontWeight: '400',
           },
         },
-        `by ${author}`
+        truncatedSubtitle,
       ) : null,
 
-      // Tags
+      // Tech stack badges using text instead of external images
       displayTags.length > 0 ? React.createElement(
         'div',
         {
           key: 'tags',
           style: {
             display: 'flex',
-            gap: '16px',
+            gap: '12px',
             margin: '0 0 40px 0',
+            flexWrap: 'wrap',
           },
         },
-        displayTags.map((tag, index) =>
-          React.createElement(
-            'span',
+        displayTags.map((tag, index) => {
+          const badge = TECH_BADGES[tag];
+          const badgeColor = badge ? `#${badge.color}` : template.accent;
+          return React.createElement(
+            'div',
             {
               key: `tag-${index}`,
               style: {
-                background: 'rgba(255,255,255,0.25)',
-                borderRadius: '25px',
-                padding: '10px 20px',
-                fontSize: '18px',
-                color: template.textColor,
-                fontWeight: '500',
+                background: badgeColor,
+                color: '#ffffff',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                fontSize: '14px',
+                fontWeight: '600',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
               },
             },
-            `#${tag}`
-          )
-        )
+            tag
+          );
+        }),
       ) : null,
 
-      // Content type badge (bottom right)
-      React.createElement(
+      // Author info with avatar (bottom left)
+      author ? React.createElement(
         'div',
         {
-          key: 'type-badge',
+          key: 'author',
           style: {
             position: 'absolute',
             bottom: '40px',
-            right: '40px',
-            background: template.accent,
-            color: 'white',
-            padding: '8px 16px',
-            borderRadius: '16px',
-            fontSize: '16px',
-            fontWeight: '600',
-            textTransform: 'uppercase',
+            left: '80px',
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: '20px',
+            color: template.subtextColor,
+            fontWeight: '500',
           },
         },
-        contentTypeBadgeText
-      ),
+        [
+          React.createElement(
+            'div',
+            {
+              key: 'avatar-container',
+              style: {
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                marginRight: '12px',
+                overflow: 'hidden',
+                border: `2px solid ${template.accent}`,
+                display: 'flex',
+              },
+            },
+            avatar ? React.createElement('img', {
+              key: 'avatar',
+              src: avatar.startsWith('http') ? avatar : `https://hankookncompany.github.io${avatar}`,
+              alt: author,
+              width: 40,
+              height: 40,
+              style: {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              },
+            }) : React.createElement(
+              'div',
+              {
+                key: 'avatar-fallback',
+                style: {
+                  width: '100%',
+                  height: '100%',
+                  background: template.accent,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#ffffff',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                },
+              },
+              author.charAt(0).toUpperCase(),
+            ),
+          ),
+          `by ${author}`,
+        ],
+      ) : null,
 
-      // Date (bottom left)
+      // Date (bottom right)
       publishedDate ? React.createElement(
         'div',
         {
@@ -214,22 +341,33 @@ function createSimpleOGImage(options: OGImageOptions) {
           style: {
             position: 'absolute',
             bottom: '40px',
-            left: '40px',
-            fontSize: '18px',
+            right: '80px',
+            fontSize: '16px',
             color: template.subtextColor,
             fontWeight: '400',
           },
         },
-        new Date(publishedDate).toLocaleDateString(
-          locale === 'ko' ? 'ko-KR' : 'en-US',
-          {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          }
-        )
+        new Date(publishedDate).toLocaleDateString(locale === 'ko' ? 'ko-KR' : 'en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
       ) : null,
-    ].filter(Boolean) // Remove null elements
+
+      // Decorative accent line
+      React.createElement('div', {
+        key: 'accent-line',
+        style: {
+          position: 'absolute',
+          bottom: '0',
+          left: '0',
+          right: '0',
+          width: OG_IMAGE_WIDTH,
+          height: '8px',
+          background: `linear-gradient(90deg, ${template.accent} 0%, ${template.accent}80 100%)`,
+        },
+      }),
+    ].filter(Boolean),
   );
 }
 
