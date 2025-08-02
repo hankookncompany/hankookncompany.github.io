@@ -37,19 +37,23 @@ const buildTocTree = (flat: Heading[]): Heading[] => {
   const stack: Heading[] = [];
 
   for (const heading of flat) {
-    heading.children = []; // ensure reset
+    // 새로운 객체를 생성하여 children 배열이 제대로 유지되도록 함
+    const newHeading = {
+      ...heading,
+      children: []
+    };
 
-    while (stack.length > 0 && stack[stack.length - 1].level >= heading.level) {
+    while (stack.length > 0 && stack[stack.length - 1].level >= newHeading.level) {
       stack.pop();
     }
 
     if (stack.length === 0) {
-      root.push(heading);
+      root.push(newHeading);
     } else {
-      stack[stack.length - 1].children.push(heading);
+      stack[stack.length - 1].children.push(newHeading);
     }
 
-    stack.push(heading);
+    stack.push(newHeading);
   }
 
   return root;
@@ -67,6 +71,21 @@ export const useToc = () => {
     const flat = Array.from(ref.current.querySelectorAll("h1, h2, h3, h4, h5, h6")).map(
       (el, i) => createHeading(el as HTMLHeadingElement, i)
     );
+
+    // MDX 콘텐츠가 없으면 잠시 후 다시 시도
+    if (flat.length <= 1) {
+      const timeout = setTimeout(() => {
+        const retryFlat = Array.from(ref.current!.querySelectorAll("h1, h2, h3, h4, h5, h6")).map(
+          (el, i) => createHeading(el as HTMLHeadingElement, i)
+        );
+        
+        flatRef.current = retryFlat;
+        const tree = buildTocTree(retryFlat);
+        setToc(tree);
+      }, 500);
+      
+      return () => clearTimeout(timeout);
+    }
 
     flatRef.current = flat;
     const tree = buildTocTree(flat);
@@ -90,6 +109,8 @@ export const useToc = () => {
 
         if (visible.length > 0) {
           const topMost = visible[0];
+          
+          // 원본 flat 배열을 수정하지 않고 새로운 배열 생성
           const updatedFlat = flat.map((h) => ({
             ...h,
             active: h.index === topMost.index,
