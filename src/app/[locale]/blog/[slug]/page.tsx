@@ -206,7 +206,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           />
 
           {/* Author Bio Section */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto px-6">
             {author && (
               <div className="mt-12">
                 <h3 className="text-lg font-semibold mb-4">
