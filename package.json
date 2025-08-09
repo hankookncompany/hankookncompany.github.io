@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "rimraf out",
     "dev": "next dev --turbopack",
     "build": "npm run generate:og && npm run build:next && npm run build:sitemap",
     "build:next": "NEXT_OUTPUT=export next build",
@@ -46,6 +47,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "rimraf": "^6",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
