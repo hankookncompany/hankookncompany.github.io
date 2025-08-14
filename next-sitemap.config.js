@@ -15,11 +15,11 @@ module.exports = {
   ],
   alternateRefs: [
     {
-      href: 'https://hankookncompany.github.io/ko',
+  href: 'https://hankookncompany.github.io/ko/',
       hreflang: 'ko',
     },
     {
-      href: 'https://hankookncompany.github.io/en',
+  href: 'https://hankookncompany.github.io/en/',
       hreflang: 'en',
     },
   ],
@@ -33,19 +33,30 @@ module.exports = {
     let clean = path;
     try { clean = decodeURIComponent(path); } catch {}
 
+    // Ensure trailing slash consistency in sitemap output
+    const ensureTrailingSlash = (p) => {
+      if (!p) return p;
+      if (p === '/') return p;
+      return p.endsWith('/') ? p : `${p}/`;
+    };
+
+    const stripTrailingSlash = (p) => (p && p !== '/' ? p.replace(/\/$/, '') : p);
+    const plain = stripTrailingSlash(clean);
+
     // Default priority and changefreq
     const defaults = {
       priority: 0.7,
       changefreq: 'weekly',
     };
 
-    if (['/','/ko','/en'].includes(clean)) defaults.priority = 1.0;
-    else if (clean.includes('/blog/')) defaults.priority = 0.8;
-    else if (clean.includes('/showcase/')) defaults.priority = 0.8;
-    else if (clean.includes('/authors/')) defaults.priority = 0.6;
+    if (['/','/ko','/en'].includes(plain)) defaults.priority = 1.0;
+    else if (plain.includes('/blog')) defaults.priority = 0.8;
+    else if (plain.includes('/showcase')) defaults.priority = 0.8;
+    else if (plain.includes('/authors')) defaults.priority = 0.6;
 
     return {
-      loc: clean,               // ← 디코딩/치환한 경로 사용
+      // Normalize URL to avoid redirects in indexing
+      loc: config.trailingSlash ? ensureTrailingSlash(plain) : stripTrailingSlash(plain),
       lastmod: new Date().toISOString(),
       ...defaults,
     };
